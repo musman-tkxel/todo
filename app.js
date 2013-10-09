@@ -41,6 +41,8 @@ app.post('/todos/add', function(req,res) {
     done: false
   });
 
+  //res.send("WELCOME");
+
   todo.save(function(err) {
     if( err ) throw err;
     console.log("Todo Saved.")
@@ -48,7 +50,7 @@ app.post('/todos/add', function(req,res) {
   });
 
 
-})
+});
 
 app.get('/todos/',function(req,res) {
 
