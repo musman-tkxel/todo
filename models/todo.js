@@ -2,7 +2,7 @@
 function make(Schema, mongoose) {
 	var TodoSchema = new Schema({
 	  title: String,
-	  done: Boolean,
+	  done: Boolean
 	});
 
     return mongoose.model('Todo', TodoSchema);

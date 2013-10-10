@@ -55,7 +55,7 @@ jQuery(function($) {
 		},
 		// Get the todo when user press 'ENTER' key.
 		create: function(e) {
-			if ( e.which !== App.ENTER_KEY ) {
+			if (e.which !== App.ENTER_KEY ) {
 				return;
 			}
 			var $input = $(this),
@@ -113,7 +113,7 @@ jQuery(function($) {
 
 			var data = {
 				id: todoId,
-				status: status 
+				status: status
 			}
 
 			$.post( App.MARK_AS_DONE_URL , data);
@@ -123,7 +123,7 @@ jQuery(function($) {
 			var todo = e.parent().parent().attr('id')
 
 			$.post(App.DESTROY_URL, {id: todo});
-			
+
 			App.removeTodo( todo )
 		},
 		// Template for each todo
@@ -144,6 +144,8 @@ jQuery(function($) {
 
 			return template;
 		}
+
+
 
 	};
 

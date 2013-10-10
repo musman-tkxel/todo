@@ -6,6 +6,10 @@ var express = require('express'),
     ObjectId = Schema.ObjectId,
     Todo = require('./models/todo.js').make(Schema, mongoose);
 
+var chai = require('chai');
+var expect = chai.expect;
+
+
 var app = module.exports = express.createServer();
 
 // Configuration
@@ -32,6 +36,7 @@ app.configure('production', function(){
 
 app.get('/', routes.index);
 
+
 app.post('/todos/add', function(req,res) {
 
   res.contentType('applicaton/json');
@@ -41,13 +46,14 @@ app.post('/todos/add', function(req,res) {
     done: false
   });
 
-  //res.send("WELCOME");
 
   todo.save(function(err) {
     if( err ) throw err;
     console.log("Todo Saved.")
     res.send( todo )
   });
+
+  //  res.send('not welcome');
 
 
 });
@@ -65,6 +71,7 @@ app.get('/todos/',function(req,res) {
 app.post('/todos/marktodo', function (req, res) {
   return Todo.findById(req.body.id, function (err, todo) {
     todo.done = req.body.status == 'done' ? true : false;
+    //todo.done = req.body.title;
     return todo.save(function (err) {
       if (!err) {
         console.log("TODO Updated.");
