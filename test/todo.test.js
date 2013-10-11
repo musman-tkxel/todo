@@ -16,7 +16,6 @@ describe('#Routed to INDEX successfully', function() {
 });
 
 
-
 describe('#When Object Save Succeeded', function() {
     it('respond with JSON', function(done) {
 
