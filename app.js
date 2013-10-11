@@ -50,7 +50,7 @@ app.post('/todos/add', function(req,res) {
         todo.save(function(err) {
             if( err ) throw err;
             console.log("Todo Saved.")
-            res.send( todo )
+            res.send( todo );
         });
     }
 });
@@ -89,7 +89,7 @@ app.post('/todos/destroy', function (req, res) {
         return res.send('');
       } else {
         console.log(err);
-        //res.send('FAILED');
+        //res.send('ERROR');
       }
     });
   });

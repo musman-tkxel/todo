@@ -81,7 +81,7 @@ jQuery(function($) {
 		// Remove todo from DOM
 		removeTodo: function( todoId ) {
 			$('li#'+todoId).remove();
-		},		
+		},
 		// Get all todos from server and render it.
 		render: function() {
 			$.getJSON('/todos/', function(data) {
