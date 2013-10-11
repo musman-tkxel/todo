@@ -82,17 +82,22 @@ app.post('/todos/marktodo', function (req, res) {
 * Remove one Todo by ID
 */
 app.post('/todos/destroy', function (req, res) {
-  return Todo.findById(req.body.id, function (err, todo) {
-    return todo.remove(function (err) {
-      if (!err) {
-        console.log("TODO Removed.");
-        return res.send('');
-      } else {
-        console.log(err);
-        //res.send('ERROR');
-      }
+    return Todo.findById(req.body.id, function (err, todo) {
+        if(req.body.id != -1) {
+            return todo.remove(function (err) {
+                if (!err) {
+                    console.log("TODO Removed.");
+                    return res.send('');
+                } else {
+                    console.log(err);
+                    //res.send('ERROR');
+                }
+            });
+        }
+        else{
+            return res.send('');
+        }
     });
-  });
 });
 
 

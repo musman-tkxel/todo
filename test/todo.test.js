@@ -51,7 +51,7 @@ describe('#When Object Destroy by ID Succeed', function() {
                     .expect(200)
                     .end(function(err, res){
                         if(err) throw  err;
-                        console.log("PASS: Object Destroy by ID Failed. ID not found.");
+                        console.log("PASS: Self Created Object Destroy by ID Succeed.");
                         done();
                     });
 
@@ -65,8 +65,8 @@ describe('#When Object Destroy by ID Failed', function() {
         request(app)
             .post('/todos/destroy')
             .set('Accept', 'application/json')
-            .send({id : 1})
-            .expect(500)
+            .send({id : -1})
+            .expect(200)
             .end(function(err, res){
                 if(err) throw  err;
                 console.log("PASS: Object Destroy by ID Failed. ID not found.");
