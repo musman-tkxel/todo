@@ -58,6 +58,7 @@ jQuery(function($) {
 			if (e.which !== App.ENTER_KEY ) {
 				return;
 			}
+
 			var $input = $(this),
 				inputVal = $input.val();
 			if ( !inputVal ) {
@@ -87,7 +88,6 @@ jQuery(function($) {
 			  var tam, i;
 
 			  tam = data.length;
-
 			  for( i=0; i < tam; i++ ) {
 				$('#todo-list').append( App.template( data[i] ) )
 			  }
@@ -137,9 +137,9 @@ jQuery(function($) {
 				template += '<div class="view">';
 					template += '<input type="checkbox" class="toggle" '+checked+'/>';
 					template += '<label>' + todo.title + '</label>';
-					template += '<a class="destroy"></a>';
+                    template += '<a class="destroy"></a>';
 				template += '</div>';
-				template += '<input type="text" value="' + todo.title + '" class="edit"/>';
+				template += '<input type="text" class="edit" value=' + todo.title + ' />';
 			template += '</li>';
 
 			return template;

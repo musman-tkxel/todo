@@ -41,29 +41,25 @@ app.post('/todos/add', function(req,res) {
 
   res.contentType('applicaton/json');
 
-  var todo = new Todo({
-    title: req.body.title,
-    done: false
-  });
+    if (req.body.title) {
+        var todo = new Todo({
+            title: req.body.title,
+            done: false
+        });
 
-
-  todo.save(function(err) {
-    if( err ) throw err;
-    console.log("Todo Saved.")
-    res.send( todo )
-  });
-
-  //  res.send('not welcome');
-
-
+        todo.save(function(err) {
+            if( err ) throw err;
+            console.log("Todo Saved.")
+            res.send( todo )
+        });
+    }
 });
 
 app.get('/todos/',function(req,res) {
 
   Todo.find({}, function(err,todos) {
-
+    if(err) throw  err;
     res.send(todos);
-
   });
 });
 
@@ -71,7 +67,6 @@ app.get('/todos/',function(req,res) {
 app.post('/todos/marktodo', function (req, res) {
   return Todo.findById(req.body.id, function (err, todo) {
     todo.done = req.body.status == 'done' ? true : false;
-    //todo.done = req.body.title;
     return todo.save(function (err) {
       if (!err) {
         console.log("TODO Updated.");
@@ -84,7 +79,7 @@ app.post('/todos/marktodo', function (req, res) {
 });
 
 /**
-* Remove one Todo
+* Remove one Todo by ID
 */
 app.post('/todos/destroy', function (req, res) {
   return Todo.findById(req.body.id, function (err, todo) {
@@ -94,11 +89,11 @@ app.post('/todos/destroy', function (req, res) {
         return res.send('');
       } else {
         console.log(err);
+        //res.send('FAILED');
       }
     });
   });
 });
-
 
 
 app.listen(3000, function(){
